@@ -3,8 +3,24 @@ class UsersController {
 
   async index (req, res){
 
-    res.send("Criação de usuarios");
+    const users = await User.findallUsers();
+    return res.json(users);
 
+  }
+  async findAll(req,res){
+    const { id } = req.params;
+    const user = await User.findById(id);
+
+    if(user.length > 0){
+
+      return res.json(user);
+
+    }else{
+
+      return res.status(404).json({error: "id not found"});
+
+    }
+    
   }
 
   async create(req,res) {

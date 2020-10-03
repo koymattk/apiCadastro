@@ -14,6 +14,38 @@ class User {
 
     }  
   }
+
+  async findallUsers(){
+
+    try{
+
+      const results = await knex.select(['id','name','email','role']).table('users');
+      return results;
+
+    }catch(err){
+
+      console.log(err);
+      return;
+
+    }
+    
+
+  }
+  
+  async findById(id){
+    try{
+
+     const results = await knex.select(['id','name','email','role']).where({id:id}).table('users');
+     return results
+
+    }catch(err){
+
+      console.log(err)
+      return;
+
+    }
+  }
+
   async findEmail(email){
     try{
       
