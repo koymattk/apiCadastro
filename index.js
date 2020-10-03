@@ -12,5 +12,5 @@ app.use("/",router);
 
 
 app.listen(3333,() => {
-    console.log("Servidor rodando");
+    console.log("Server on port: 3333");
 });
