@@ -65,6 +65,20 @@ class User {
 
     }
   }
+  async delete(id){
+
+    const user =  await this.findById(id);
+    if(user.length > 0){
+
+      await knex.delete().where({id}).table('users');
+      return {status:true};
+
+    }else{
+
+      return {status: false, err:'User not found'};
+      
+    }
+  }
 }
 
 module.exports = new User();

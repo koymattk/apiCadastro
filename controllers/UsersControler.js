@@ -7,7 +7,7 @@ class UsersController {
     return res.json(users);
 
   }
-  async findAll(req,res){
+  async findUser(req,res){
     const { id } = req.params;
     const user = await User.findById(id);
 
@@ -42,6 +42,16 @@ class UsersController {
     await User.new(email, name, password, role);
     res.send('Cadastro feito sucesso 👌');
      
+  }
+
+  async remove (req, res){
+    const { id } = req.params;
+    const result = await User.delete(id);
+    if(result.status){
+      return res.json({message: 'User delete success'});
+    }else{
+      return res.status(406).json({error:result.err});
+    }
   }
 
 }
